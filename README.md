@@ -6,6 +6,8 @@ Utility functions for **AWS S3** and any **S3-compatible object storage** — Mi
 
 [🕸️ AI Helpers](https://harchaoui.org/warith/ai-helpers)
 
+[![logo](assets/logo.png)](https://harchaoui.org/warith/ai-helpers)
+
 # Installation
 
 ```bash
