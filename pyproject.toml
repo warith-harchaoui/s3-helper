@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "s3-helper"
+version = "0.1.0"
+description = "S3 Helper: utility functions for AWS S3 and any S3-compatible object storage (MinIO, Backblaze B2 S3, DigitalOcean Spaces, Cloudflare R2, Wasabi, etc.) via boto3. Same shape as sftp-helper — credentials() loader, upload / download / list / remove / exists / make_bucket / remote_tempfile."
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = {text = "MIT"}
+authors = [
+    {name = "Warith HARCHAOUI", email = "warithmetics@deraison.ai"},
+]
+keywords = ["s3", "minio", "boto3", "object-storage", "aws", "r2", "b2", "spaces"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: File Transfer Protocol (FTP)",
+    "Topic :: System :: Archiving",
+]
+dynamic = ["dependencies"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pyyaml>=6", "moto[s3]>=5"]
+
+[project.urls]
+Homepage = "https://github.com/warith-harchaoui/s3-helper"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["s3_helper*"]
+exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+markers = [
+    "integration: tests that hit a real S3 / MinIO endpoint. Slow and require credentials; skipped by default.",
+]
+addopts = "-m 'not integration'"
